@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>方特熊出没</title>
+    <!-- <link rel="stylesheet" href="../自己网页的.css/自己正式的网页的nav方面.css"> -->
+    <!-- 我们先进行样式初始化 -->
+    <link rel="stylesheet" href="">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        .header,
+        .nar,
+        .container,
+        .footer {
+            /* 这四个盒子要左浮动 */
+            float: left;
+            /* 让他们满浏览器 */
+            width: 100%;
+        }
+
+        .header {
+            background: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .nav {
+            background: rgb(12, 183, 225);
+            /* background-color: 50, 176, 227; */
+        }
+
+        .nav a {
+            color: pink;
+            padding: 25px 89px;
+            display: inline-block;
+            /* 让链接以块的形式显示 */
+        }
+
+        .nav a:hover {
+            background: pink;
+            color: #000;
+        }
+
+        .xianbiaoti {
+            font: italic 700 40px/2 楷体;
+        }
+
+        .xianbiaoti {
+            color: rgb(7, 172, 213);
+        }
+
+        /* .container{ */
+        /* background-image: url(../t016e4c5606f617c405.jpg); */
+        /* } */
+        /* 我们让左右两边都固定宽度200 */
+        /* .container { */
+        /* display: flex; */
+        /* } */
+
+        .lside {
+            width: 464px;
+            float: left;
+        }
+
+        /* .lside{ */
+        /* background: paleturquoise; */
+        /* } */
+        .rside {
+            width: 466px;
+            float: right;
+        }
+
+        /* 所以中间要加左右边距 */
+        .content {
+            margin: 0px 205px;
+        }
+
+        /* .content{ */
+        /* background-image: ima; */
+        /* } */
+        .lside,
+        .rside,
+        .content {
+            padding: 5px;
+        }
+
+        .footer {
+            font: italic 700 40px/2 楷体;
+        }
+
+        .footer {
+            color: rgb(7, 172, 213);
+        }
+
+        .footer {
+            background-image: url(../自己网页的.css/0c123ebf0f0b4963bccfdc95e0f608f6.jpg);
+            background-position: right;
+            /* background-repeat: no-repeat; */
+            /* background-size: 100%; */
+        }
+
+        /* .footer { */
+        /* width: 200px; */
+        /* } */
+
+        #sidebar {
+            /* width: 40px; */
+            /* background-color: #fff; */
+            /* background-color:  rgba(255, 255, 255, 0.9); */
+            /* padding: 40px; */
+            /* 下面定位方式常用于创建在滚动屏幕时仍固定在相同位置的元素。 */
+            position: fixed;
+            right: 0;
+            top: 20%;
+            /* y轴相对向下移动50% */
+            transform: translateY(-50%);
+
+
+
+        }
+
+        /* 这个下面栏目还没做 */
+        .siderbar-link {
+            display: block;
+            margin: 10px 0;
+            padding: 5px;
+            color: pink;
+            text-decoration: none;
+        }
+
+
+        /* #background-mask { */
+        /* width: 100%; */
+        /* height: 100%; */
+        /* position: fixed; */
+        /* right: 0; */
+        /* background-color: rgba(255, 255, 255, 0.9); */
+        /* z-index: 1; */
+        /* } */
+        #sidebar {
+            /* 还未 */
+            transition: top 0.5s;
+        }
+
+        /* 这里定义了一个动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* 这是旁边光头强的那个名字 */
+        #sidebar {
+            /* 这个是绑定了那个动画 */
+            animation: fadeIn 1s;
+        }
+
+        /* 鼠标这个还没做 */
+        .shubiao {
+            width: 5px;
+        }
+
+        .shubiao {
+            font: italic 700 40px/2 楷体;
+            color: rgb(7, 172, 213);
+        }
+
+        .fanhui {
+            /* 这个是返回顶部那个 */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* width: 40px; */
+
+        }
+
+        .fanhui:hover {
+            /* 动画持续时间为 1 秒,使用缓动函数，动画开始和结束时速度较慢，中间部分较快。动画播放次数，1 表示播放一次。动画结束后，保持最后的状态。 */
+            animation: showfanhui 0.8s ease-in-out 1 forwards;
+        }
+
+        /* @keyframes showfanhui: 定义名为 showfanhui 的关键帧动画。 */
+        @keyframes showfanhui {
+            5% {
+                /* rotateZ() 函数定义了一个转换，它可以让一个元素围绕横 Z 轴旋转，而不会对其进行变形。它的结果是一个<transform-function>数据类型。 */
+                /* 5%: 动画进行到 5% 时，元素顺时针旋转 8 度。 */
+                transform: rotateZ(14deg);
+
+            }
+
+            20% {
+                /* 动画进行到 20% 时，元素逆时针旋转 8 度。 */
+                transform: rotateZ(-14deg);
+
+            }
+
+            25% {
+                /* 动画进行到 25% 时，元素回到原始位置（旋转 0 度）。 */
+                transform: rotateZ(0);
+
+            }
+
+            30% {
+                transform: rotateZ(14deg);
+                /* 30%: 动画进行到 30% 时，元素再次顺时针旋转 8 度 */
+            }
+
+            45% {
+                transform: rotateZ(-14deg);
+
+            }
+
+            50% {
+                transform: rotateZ(0);
+
+            }
+        }
+
+
+
+        html {
+            /* 返回顶部那个平滑效果 */
+            scroll-behavior: smooth;
+        }
+
+        /* .renwu { */
+        /* background-image: url(../自己网页的.css/senglin.png); */
+        /* background-position: right; */
+
+        /* } */
+
+        .renwu {
+            font: italic 700 40px/2 楷体;
+        }
+
+        .renwu {
+            color: #e0c6ef;
+        }
+
+        /* shell是那个人物那个全部 */
+        .shell {
+            width: 1700px;
+            /* 指元素居中 */
+            margin: 0 auto;
+            height: 750px;
+            /* 平着放过去 */
+            display: flex;
+        }
+
+        /* .shell { */
+        /* height: 100vh; */
+        /* display: flex; */
+        /* justify-content: center; */
+        /* align-items: center; */
+        /* overflow: hidden; */
+        /* background-image: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
+        /* } */
+        /* card是每一个人物卡那个 */
+        .card {
+            flex-basis: 15%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 除了第一个之外 */
+        .card:not(:nth-child(1)) {
+            margin-left: 20px;
+
+        }
+
+        /* 主要输入机制鼠标可以方便地悬停在元素上。 */
+        .card:hover {
+            overflow: initial;
+
+        }
+
+        /* box是下面放着的 */
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: all .1s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            border-radius: 10px;
+            /* linear-gradient 是一个函数，用于创建线性渐变。180deg 指定了渐变的方向。 */
+            /* 180deg: 表示渐变从上到下（即从顶部到底部）。 */
+
+            background-image: linear-gradient(180deg, #a18cd1, #fcaae55c, #141414cc);
+
+
+
+        }
+
+        .box>img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, 10%) scale(3);
+            position: relative;
+            z-index: -1;
+
+
+
+        }
+
+        .card:hover>.box img {
+            opacity: 0;
+
+        }
+
+        .card:hover>.box {
+            transform: scaleY(1.5);
+            background-image: initial;
+            background-color: #e0c6ef;
+            z-index: 2;
+            cursor: pointer;
+
+        }
+
+        .card>h4 {
+            position: absolute;
+            display: block;
+            width: 120px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, -35%);
+            font-size: 28px;
+            z-index: 100;
+            transition: .2s;
+        }
+
+        .card:hover>h4 {
+            color: #fff;
+            transform: translate(-50%, 250%);
+
+        }
+
+        .card:hover .character>img {
+            opacity: 1;
+
+        }
+
+        .card>.character {
+            position: absolute;
+            top: -100px;
+            left: -400px;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+
+        }
+
+        .character>img {
+            width: 820px;
+            height: 820px;
+            object-fit: contain;
+            opacity: 0;
+            transition: all .3s;
+            position: relative;
+            z-index: -10;
+
+        }
+
+        .bo {
+            background-color: #eaeaea;
+            overflow: hidden;
+            /* width: 1500px; */
+            /* height: 1000px; */
+            /* margin: 0; */
+            /* padding: 0; */
+        }
+
+        .con {
+            /* width: 1300;一开始是这个 */
+            width: 1355px;
+            height: 747px;
+            position: absolute;
+            top: 485%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f5f5f5;
+            padding: 50px;
+            box-shadow: 0 30px 50px #dbdbdb;
+            text-align: left;
+            /* margin: 0; */
+            /* padding: 0; */
+            /* left: 50%; */
+            /* transform: translate(-50%, -50%); */
+            /* background-color: #f5f5f5; */
+        }
+
+        .content {
+            /* position: absolute; */
+            /* 文本左对齐 */
+            text-align: left;
+            margin: 0;
+
+            /* left: 0; */
+        }
+
+        #slide {
+            width: max-content;
+            margin-top: 50px;
+        }
+
+        /* 电影的图那里 */
+        .item {
+            width: 200px;
+            height: 300px;
+            background-position: 50%, 50%;
+            display: inline-block;
+            background-size: cover;
+            position: absolute;
+            top: 50%;
+            /* transform: translateY(-50%); */
+            /* margin-top同样可以实现上面那种上下居中的效果，而且这个不抖动; */
+            margin-top: -150px;
+            /* transform: translateY(-50%); */
+            /* 圆角 */
+            border-radius: 20px;
+            box-shadow: 0 30px 50px #505050;
+            transition: 0.5s;
+
+        }
+
+        .item:nth-child(1),
+        .item:nth-child(2) {
+            /* 一开始两张图让他们铺满整个容器 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin-top: 0;
+            /* 把上面从y轴上平移50%取消，圆角和内边距也是取消 */
+            /* transform: translateY(0); */
+            border-radius: 0;
+            box-shadow: none;
+
+        }
+
+        .item:nth-child(3) {
+            left: 58%;
+        }
+
+        .item:nth-child(4) {
+            left: calc(58% + 220px);
+        }
+
+        .item:nth-child(5) {
+            left: calc(58% + 440px);
+        }
+
+        .item:nth-child(n+6) {
+            left: calc(58% + 660px);
+            opacity: 0;
+        }
+
+        .item .content {
+            width: 300px;
+            position: absolute;
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+            /* margin-top同样可以实现上面那种上下居中的效果，而且这个不抖动; */
+            /* margin-top: -150px; */
+
+            font-family: system-ui;
+            color: #eee;
+            display: none;
+        }
+
+        .item:nth-child(2) .content {
+            display: block;
+        }
+
+        .item .name {
+            font-size: 40px;
+            font-weight: bold;
+            opacity: 0;
+
+
+            animation: showcontent 1s ease-in-out 1 forwards;
+        }
+
+        /* 调节一下竖直的一个距离 */
+        .item .des {
+            margin: 20px 0;
+            opacity: 0;
+            /* 这后面两个加一些延时好看一些  */
+            animation: showcontent 1s ease-in-out 0.3s 1 forwards;
+        }
+
+        /* 把那个按钮撑开 */
+        .item button {
+            padding: 10px;
+            border: none;
+            opacity: 0;
+            /* 接下来所有content里面的都把动画绑定一下，通过一秒钟来完成这个动画且后面表示动画每执行一次就好了并且保持最后的状态 */
+            animation: showcontent 1s ease-in-out 0.6s 1 forwards;
+        }
+
+        /* 接下来定义一个动画，设置一个关键帧 */
+        @keyframes showcontent {
+            from {
+                opacity: 0;
+                /* 设置一个平移过渡 */
+                transform: translateY(100px);
+                /* 再加点滤镜还有模糊度 */
+                filter: blur(20px);
+            }
+
+            to {
+                opacity: 1;
+                /* 设置一个平移过渡不要 */
+                transform: translateY(0);
+                /* 再加点滤镜还有模糊度不要 */
+                filter: blur(0);
+            }
+        }
+
+        .buttons {
+            width: 100%;
+            position: absolute;
+            /* 让他距离地面50像素 */
+            bottom: 50px;
+            /* 把向右边挤的效果给抵消一下 */
+            /* margin-left: -50%; */
+            /* 居中 */
+            text-align: center;
+        }
+
+        .s_button {
+            /* 设置成行内块 */
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            /* 设置行内距 */
+            line-height: 50px;
+            text-align: center;
+            color: gray;
+            background-color: #fff;
+            font-size: 25px;
+            /* 让他的边框弄50%变成一个圆 */
+            border-radius: 50%;
+            /* 加粗 */
+            font-weight: bold;
+            /* 边框的设置1px实线颜色 */
+            border: 1px solid #555;
+            /* 给两个图案增加25个像素的margin */
+            margin: 0 25px;
+            /* 鼠标那个加个0.5秒的过渡时间 */
+            transition: 0.5s;
+        }
+
+        /* 让鼠标移上去的时候出现手型，再简单改一下颜色 */
+        .s_button:hover {
+            cursor: pointer;
+            background-color: #ccc;
+
+        }
+
+        .dianyin {
+            font: italic 700 40px/2 楷体;
+        }
+
+        .dianyin {
+            color: rgb(7, 172, 213);
+        }
+
+        .rmenu {
+            width: 100px;
+            height: 516px;
+            background: url(../熊出没电影图片/rmenu_bg.png) no-repeat;
+            padding-top: 180px;
+            position: absolute;
+            right: -110px;
+            z-index: 100;
+        }
+    </style>
+    <script type="text/javascript" src="../自己的网页/js/js1"></script>
+</head>
+
+<body>
+    <!-- <div class="main"> -->
+    <!-- <div class="header"> -->
+    <!-- <h1><img src="./屏幕截图 2024-11-02 224825.png" title="这是方特熊出没呦" width="100%"></h1> -->
+    <!-- <p><img src="../fangte.png" width="400" ></p> -->
+
+    <!-- </div> -->
+    <div class="nav">
+        <!-- <a href="#">导航项</a> -->
+        <audio src="../刘晨 - 我还有点小糊涂.mp3" controls loop></audio>
+        <a href="#">首页</a>
+        <a href="#">方特家族</a>
+        <a href="#">主题乐园</a>
+        <a href="#">影视</a>
+        <a href="#">授权合作</a>
+
+
+
+    </div>
+    <div class="main">
+        <div class="header">
+            <h1><img src="./屏幕截图 2024-11-02 224825.png" title="这是方特熊出没呦" width="100%"></h1>
+            <!-- <p><img src="../fangte.png" width="400" ></p> -->
+        </div>
+        <div class="xianbiaoti">
+            <p>主要人物介绍</p>
+        </div>
+        <div class="container">
+            <!-- <p>主要人物介绍</p> -->
+            <!-- 主题这里我们要放入三个盒子，分别是左中右,要注意的是我们用margin进行三栏布局中间的栏是自适应的，所以中间的栏放在第三个。 -->
+            <div class="lside">
+                <h2>俺是熊大</h2>
+                <img src="../屏幕截图 2024-11-07 200352.png" title="熊大">
+                <p>《熊大：森林守护者中的智慧担当》
+
+                    熊大，是经典国产动画片《熊出没》系列中的主要角色之一，深受广大观众尤其是小朋友们的喜爱。
+
+                    从外形上看，熊大身形较为魁梧，浑身毛茸茸的，毛色以棕褐色为主，胸前有一弯白色的月牙形毛发，显得格外醒目，这也成为了他独特的标志之一。他有着一双圆溜溜的大眼睛，透着机灵劲儿，耳朵总是竖着，时刻警惕着周围的动静。
+
+                    熊大的性格特点十分鲜明。他非常聪明机智，在面对诸多困难和挑战，尤其是与光头强的斗智斗勇过程中，总能想出各种各样巧妙的办法来应对。比如，当光头强又想出新的伐木招数，弄来了一些高科技的伐木工具时，熊大往往能迅速分析出这些工具的弱点，然后带领熊二制定出相应的策略，或是巧妙地破坏工具，或是利用森林里的地势环境设下陷阱，让光头强的伐木计划一次次落空。
+
+                    同时，熊大还具备很强的领导能力。在保护森林这件大事上，他无疑是核心人物。他会合理安排熊二的任务，知道熊二力气大，就会让他负责一些需要体力的活儿，比如搬运重物来设置障碍等。而自己则凭借着聪明的头脑统筹全局，思考应对光头强的最佳方案。在每一次阻止光头强伐木的行动中，他都能有条不紊地指挥，让整个行动得以顺利开展。
+
+                    熊大对森林有着极深的感情，这片森林是他和熊二的家园，里面的一草一木他都无比熟悉和热爱。他深知森林对于动物们生存的重要性，所以坚决不允许光头强肆意砍伐破坏。为了保护森林，他可以不顾自身安危，哪怕面对光头强那些看起来很厉害的武器装备，他也毫不退缩.
+                </p>
+
+            </div>
+            <div class="rside">
+                <h2>俺是熊二</h2>
+                <img src="../屏幕截图 2024-11-07 195102.png" title="熊二">
+                <p>《熊二：憨厚可爱的森林守护者》
+
+                    熊二同样是《熊出没》系列动画片中备受瞩目的角色。
+
+                    外形方面，熊二和熊大有着相似之处，也是一身毛茸茸的样子，不过他的毛色相对熊大来说略深一些，呈现出深棕色。他的体型较为壮实，给人一种憨憨厚厚的感觉。那一双小小的眼睛，总是透着一股质朴和单纯，耳朵也是大大的，微微下垂，看起来萌萌的。
+
+                    熊二的性格可以说是憨厚、单纯、可爱至极。他没有熊大那么多的心机和弯弯绕绕，想法往往很简单直接。比如看到好吃的，他的第一反应就是想要去吃，根本不会去想这背后会不会有什么陷阱之类的。在很多集里，光头强就是利用熊二的贪吃这一特点，设下圈套，想用美食来诱惑熊二，让他放松对自己伐木的警惕，而熊二常常就会中招，然后被熊大一顿数落。
+
+                    但尽管熊二有时候会因为贪吃或者莽撞犯错，他的本质却是非常善良的。他热爱森林里的每一个动物朋友，也同样深爱着这片森林家园。当森林面临危险，比如有外来的破坏者或者光头强又要伐木的时候，他也会毫不犹豫地和熊二一起站出来保护森林。虽然他可能不像熊大那样能迅速想出那么多巧妙的办法，但他凭借着自己的一身力气，在很多关键时刻也能发挥重要作用。
+
+                    在与熊大的关系中，熊二对哥哥熊大是十分依赖的。他知道熊大比自己聪明，所以很多时候都会听从熊大的安排。当熊大制定好保护森林的计划后，熊二就会按照哥哥的指示去做，哪怕有时候他不太理解为什么要这么做，他也会照做不误。而且，熊大对他的数落也好，教导也罢，他都不会生气，反而会虚心接受。
+                </p>
+            </div>
+            <div class="content">
+                <h2>俺是光头强</h2>
+                <img src="../屏幕截图 2024-11-07 200850.png" title="光头强">
+                <p>《光头强：复杂多面的伐木工》
+
+                    光头强是《熊出没》系列中极具特色的一个角色，他的存在让整个故事充满了戏剧性和冲突感。
+
+                    从外貌上看，光头强最显著的特征就是他那颗光溜溜的脑袋，在阳光下还会反光呢。他留着一小撮胡子，眼睛小小的，却透着一股倔强和执着的劲儿。他平时总是穿着那身标志性的蓝色工装服，戴着一顶安全帽，背着一个工具包，里面装满了各种伐木工具，这一身打扮完全就是一个典型的伐木工形象。
+
+                    光头强的性格是复杂多面的。首先，他有着很强的执着精神。他的本职工作是在狗熊岭伐木，尽管每次伐木几乎都遭到熊大、熊二的阻拦，但他却从未真正放弃过。他总是想尽办法，从最初的普通斧头伐木，到后来弄来各种高科技的伐木工具，如电锯、伐木机器人等等，他一心只想完成自己的伐木任务，把木材运出去卖钱，改善自己的生活状况。
+
+                    然而，光头强的生活其实并不容易。他住在狗熊岭深处的一个小木屋，那地方偏僻又简陋，生活条件很差。他要自己做饭、洗衣，还要应对森林里的各种恶劣天气和野兽出没等情况。他伐木的收入也并不高，而且常常因为完不成任务而被李老板克扣工资，所以他其实是在为了生计苦苦挣扎。
+
+                    在与熊大、熊二的关系中，光头强一开始是把他们当作眼中钉、肉中刺的。因为熊大、熊二总是破坏他的伐木计划，让他无法顺利完成工作，他对他们是又恨又无奈。所以他经常想出各种招数来对付熊大、熊二，比如设置陷阱、使用新的伐木工具等等，试图绕过他们或者直接打败他们。
+
+                    但随着故事的发展，光头强和熊大、熊二之间的关系也逐渐发生了变化。有时候，当遇到一些更大的威胁，比如森林里出现了其他更厉害的破坏者或者自然灾害等情况时，光头强也会和熊大、熊二站在一起，共同应对这些危机。他渐渐意识到，森林其实也是他生活的一部分，保护森林对于他来说也有一定的意义。
+
+                    光头强还有着自己的爱好和梦想。</p>
+            </div>
+        </div>
+        <div class="footer">
+            <p>相关视频</p>
+            <video src="../李智平 - 早安大森林(TV版).mp4" controls long muted autoplay></video>
+            <!-- <video src="../自己网页的.css/houmian .mp4" controls long muted autoplay></video> -->
+        </div>
+
+        <div id="sidebar">
+            <img src="../自己网页的.css/AI抠图_360智图.png">
+            <a href="#" class="siderbar-link"></a>
+            <!-- <a href="#" class="siderbar-link"></a> -->
+            <!-- <a href="#" class="siderbar-link"></a> -->
+
+            <!-- <div id="content">内容</div> -->
+            <!-- <div id="background-mask"></div> -->
+
+        </div>
+        <div class="fanhui">
+            <a href="#"><img src="../自己网页的.css/hhh.png"></a>
+        </div>
+
+
+
+        <div>
+            <!-- </div> -->
+
+            <!-- <div> -->
+            <!-- <div class="shubiao"><img src="../自己网页的.css/未命名图片_2024.11.13.png" > -->
+            <!-- <h3>主要相关电影</h3> -->
+            <!-- </div> -->
+            <!-- <img src="../自己网页的.css/" alt=""> -->
+            <!-- <div class="xiao"><p>主要相关电影</p></div> -->
+            <!-- </div> -->
+            <script>
+                // 弹出警示框
+                alert('你好，熊出没')
+            </script>
+
+            <div>
+                <div class="renwu">
+                    <p>熊出没主要其他人物</p>
+                    <!-- <video src="../自己网页的.css/屏幕录制 2024-11-17 145558.mp4" controls long muted autoplay></video> -->
+                </div>
+            </div>
+            <div class="shell">
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/吉吉.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/吉吉.jpeg">
+
+                    </div>
+                    <h4>吉吉</h4>
+                </div>
+
+
+                <!-- <div class="card"> -->
+                <!-- <div class="box"><img src="../熊出没动画人物/小光头强.png"> -->
+                <!-- </div> -->
+                <!-- <div class="character"> -->
+                <!-- <img src="../熊出没动画人物/小光头强.png"> -->
+
+                <!-- </div> -->
+                <!-- <h4>小光头强</h4> -->
+                <!-- </div> -->
+
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/嘟嘟.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/嘟嘟.jpeg">
+                    </div>
+                    <h4>嘟嘟</h4>
+                </div>
+
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/团子.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/团子.jpeg">
+                    </div>
+                    <h4>团子</h4>
+                </div>
+
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/肥波.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/肥波.jpeg">
+                    </div>
+                    <h4>肥波</h4>
+                </div>
+
+
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/猫头鹰.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/猫头鹰.jpeg">
+                    </div>
+                    <h4>猫头鹰</h4>
+                </div>
+
+                <!-- <div class="card"> -->
+                <!-- <div class="box"><img src="../熊出没动画人物/xiao.png"> -->
+                <!-- </div> -->
+                <!-- <div class="character"> -->
+                <!-- <img src="../熊出没动画人物/xiao.png"> -->
+                <!-- </div> -->
+                <!-- <h4>小熊二</h4> -->
+                <!-- </div> -->
+
+                <div class="card">
+                    <div class="box"><img src="../熊出没人物清晰/萝卜头.jpeg">
+                    </div>
+                    <div class="character">
+                        <img src="../熊出没人物清晰/萝卜头.jpeg">
+                    </div>
+                    <h4>萝卜头</h4>
+                </div>
+
+
+                <!-- <div class="card"> -->
+                <!-- <div class="box"><img src="../熊出没动画人物/da.png"> -->
+                <!-- </div> -->
+                <!-- <div class="character"> -->
+                <!-- <img src="../熊出没动画人物/da.png"> -->
+                <!-- </div> -->
+                <!-- <h4>小熊大</h4> -->
+                <!-- </div> -->
+
+                <div class="dianyin">
+                    <p>电影</p>
+
+                </div>
+
+            </div>
+            <div class="bo">
+                <div class="con">
+                    <div id="slide">
+                        <div class="item" style="background-image: url(../熊出没电影图片/原始时代清晰的.png);">
+                            <div class="content">
+                                <div class="name">原始时代</div>
+                                <div class="des">他们又能否回归现代？拉开序幕……</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/重返地球清晰的.png);">
+                            <div class="content">
+                                <div class="name">重返地球</div>
+                                <div class="des">神秘的高科技军团背后有何故事呢？</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/雪玲熊风清晰的.png);">
+                            <div class="content">
+                                <div class="name">雪岭熊风</div>
+                                <div class="des"> 扑朔迷离角色，唤醒熊二纯真回忆。</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/夺宝熊兵清晰的.png);">
+                            <div class="content">
+                                <div class="name">夺宝熊兵</div>
+                                <div class="des">他们能否以“熊兵”之势力挽狂澜。</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/变形记清晰的.png);">
+                            <div class="content">
+                                <div class="name">变形记</div>
+                                <div class="des">光头强带着两头熊开始了寻父之旅。</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+                        <div class="item" style="background-image: url(../熊出没电影图片/奇幻空间清晰图.png);">
+                            <div class="content">
+                                <div class="name">奇幻空间</div>
+                                <div class="des">一支邪恶夺宝军团悄然潜入熊出没。</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/过年清晰的.png);">
+                            <div class="content">
+                                <div class="name">熊熊过年</div>
+                                <div class="des">光头强没购买火车票但却回家过年？</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/熊心归来.png);">
+                            <div class="content">
+                                <div class="name">熊心归来</div>
+                                <div class="des">在盛大的嘉年华舞台上，胜利大逃亡</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/狂野大陆清晰的.png);">
+                            <div class="content">
+                                <div class="name">狂野大陆</div>
+                                <div class="des">狗熊岭附近开业了一个“狂野大陆”</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+                        <div class="item" style="background-image: url(../熊出没电影图片/逆转时空.png);">
+                            <div class="content">
+                                <div class="name">逆转时空</div>
+                                <div class="des">光头强开始一场奇妙的时空冒险……</div>
+                                <button>See more</button>
+                            </div>
+                        </div>
+
+
+
+                        <!-- /* <div class="item" style="background-image: url(../熊出没电影图片/雪玲熊风清晰的.png);"> -->
+                        <!-- <div class="content"> -->
+                        <!-- <div class="name">雪岭熊风</div> -->
+
+                    </div>
+                    <!-- &lt和&gt分别是左箭头和右箭头 -->
+                    <div class="buttons">
+                        <div class="s_button">&lt;</div>
+                        <div class="s_button">&gt;</div>
+                    </div>
+                </div>
+            </div>
+            <script src="script.js"></script>
+
+            <div class="rmenu" style="top: 825px;">
+                <a class="ra1" href="#"></a>
+                <a class="ra2" href="#"></a>
+                <a class="ra3" href="#"></a>
+                <a class="ra4" href="#"></a>
+                <a class="ra5" href="#"></a>
+                <a class="ra6" href="#"></a>
+
+            </div>
+</body>
+
+</html>

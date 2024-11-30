@@ -1,0 +1,15 @@
+window.onscroll = function () {
+    var sidebar = document.getElementById('sidebar');
+    requestAnimationFrame(function () {
+        sidebar.style.top = window.scrollY + 'px';
+    });
+};
+
+; // 使用GSAP的完整示例
+import { gsap } from 'gsap';
+
+window.onscroll = function () {
+    var sidebar = document.getElementById('sidebar');
+    gsap.to(sidebar, { duration: 0.5, top: window.scrollY + 'px' });
+};
+
